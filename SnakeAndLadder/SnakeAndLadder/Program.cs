@@ -11,6 +11,7 @@ namespace SnakeAndLadder
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to snake and ladder ");
+
             int player1 = 0;
             const int noPlay = 0;
             const int snake = 1;
@@ -27,7 +28,7 @@ namespace SnakeAndLadder
                 switch (option)
                 {
                     case noPlay:
-                        // Do Nothing
+                        
                         nxtMove = "No Play";
                         break;
 
@@ -38,19 +39,23 @@ namespace SnakeAndLadder
                             if ((player1 - diceCount) < 0)
                                 player1 = 0;
                             else
-                                player1 = player1 - diceCount;
+                                player1 -= diceCount;
                         }
                         break;
 
                     case ladder:
                         nxtMove = "Ladder";
-                        player1 = player1 + diceCount;
+                        if (player1 + diceCount <= 100)
+                            player1 += diceCount;
+
+
                         break;
 
                 }
 
                 Console.WriteLine($"Dice Count: {diceCount}, Option: {nxtMove}, PlayerScore: {player1}");
             }
+
 
 
             Console.ReadLine();
