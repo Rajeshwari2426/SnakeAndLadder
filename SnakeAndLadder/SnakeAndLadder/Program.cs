@@ -12,6 +12,10 @@ namespace SnakeAndLadder
         {
             Console.WriteLine("Welcome to snake and ladder ");
             int player1 = 0;
+            Random random = new Random();
+            int diceCount = random.Next(1, 7);
+
+            Console.WriteLine(diceCount);
             Console.ReadLine();
 
         }
