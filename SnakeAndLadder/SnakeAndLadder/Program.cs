@@ -8,55 +8,68 @@ namespace SnakeAndLadder
 {
     internal class Program
     {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Welcome to snake and ladder ");
+        public int player;
+        public const int noPlay = 0;
+        public const int snake = 1;
+        public const int ladder = 2;
+       public int trials = 0;
+       public string nxtMove = "Next move";
 
-            int player1 = 0;
-            const int noPlay = 0;
-            const int snake = 1;
-            const int ladder = 2;
-            int trials = 0;
-            string nxtMove = "Next move";
+       Random random = new Random();
+        public int PlayGame()
+        { 
 
-
-            Random random = new Random();
-
-            while (player1 < 100)
+            while (player < 100)
             {
                 int diceCount = random.Next(1, 7);
                 int option = random.Next(0, 3);
+
                 switch (option)
                 {
-                    case noPlay:
-                        
+                    case noPlay:                 
                         nxtMove = "No Play";
                         break;
 
                     case snake:
-                        if (player1 > 0)
+                        if (player > 0)
                         {
                             nxtMove = "Snake";
-                            if ((player1 - diceCount) < 0)
-                                player1 = 0;
+                            if ((player - diceCount) < 0)
+                                player = 0;
                             else
-                                player1 -= diceCount;
+                                player -= diceCount;
                         }
                         break;
 
                     case ladder:
                         nxtMove = "Ladder";
-                        if (player1 + diceCount <= 100)
-                            player1 += diceCount;
+                        if (player + diceCount <= 100)
+                            player += diceCount;
                         break;
                 }
                 trials++;
-                Console.WriteLine($"Trial: {trials}, Dice Count: {diceCount}, Option: {nxtMove}, PlayerScore: {player1}");
+                Console.WriteLine($"Trial: {trials}, Dice Count: {diceCount}, Option: {nxtMove}, PlayerScore: {player}");
             }
+            return trials;
+        }
+          static void Main(string[] args)
+          {
+            Program gamePlay1 = new Program ();
+            int player1Trials = gamePlay1.PlayGame();
+
+            Program gamePlay2 = new Program();
+            int player2Trials = gamePlay2.PlayGame();
+
+            if (player1Trials < player2Trials)
+                Console.WriteLine($"Player1 - {player1Trials} attempts, Player2 - {player2Trials} attempts \n Player1 is the Winner");
+            else if (player1Trials > player2Trials)
+                Console.WriteLine($"Player1 - {player1Trials} attempts, Player2 - {player2Trials} attempts \n Player2 is the Winner");
+            else
+                Console.WriteLine("Its a Tie");
 
 
             Console.ReadLine();
 
-        }
+          }
     }
 }
