@@ -16,6 +16,7 @@ namespace SnakeAndLadder
             const int noPlay = 0;
             const int snake = 1;
             const int ladder = 2;
+            int trials = 0;
             string nxtMove = "Next move";
 
 
@@ -47,15 +48,11 @@ namespace SnakeAndLadder
                         nxtMove = "Ladder";
                         if (player1 + diceCount <= 100)
                             player1 += diceCount;
-
-
                         break;
-
                 }
-
-                Console.WriteLine($"Dice Count: {diceCount}, Option: {nxtMove}, PlayerScore: {player1}");
+                trials++;
+                Console.WriteLine($"Trial: {trials}, Dice Count: {diceCount}, Option: {nxtMove}, PlayerScore: {player1}");
             }
-
 
 
             Console.ReadLine();
