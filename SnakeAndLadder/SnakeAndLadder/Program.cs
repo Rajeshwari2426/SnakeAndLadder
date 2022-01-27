@@ -19,31 +19,38 @@ namespace SnakeAndLadder
 
 
             Random random = new Random();
-            int diceCount = random.Next(1, 7);
-            int option = random.Next(0, 3);
 
-            switch (option)
+            while (player1 < 100)
             {
-                case noPlay:
-                    // Do Nothing
-                    nxtMove = "No Play";
-                    break;
+                int diceCount = random.Next(1, 7);
+                int option = random.Next(0, 3);
+                switch (option)
+                {
+                    case noPlay:
+                        // Do Nothing
+                        nxtMove = "No Play";
+                        break;
 
-                case snake:
-                    if (player1 > 0)
-                        nxtMove = "Snake";
-                    player1 = player1 - diceCount;
-                    break;
+                    case snake:
+                        if (player1 > 0)
+                        {
+                            nxtMove = "Snake";
+                            if ((player1 - diceCount) < 0)
+                                player1 = 0;
+                            else
+                                player1 = player1 - diceCount;
+                        }
+                        break;
 
-                case ladder:
-                    nxtMove = "Ladder";
-                    player1 = player1 + diceCount;
-                    break;
+                    case ladder:
+                        nxtMove = "Ladder";
+                        player1 = player1 + diceCount;
+                        break;
 
+                }
+
+                Console.WriteLine($"Dice Count: {diceCount}, Option: {nxtMove}, PlayerScore: {player1}");
             }
-
-            Console.WriteLine($"Dice Count: {diceCount}, Option: {nxtMove}, PlayerScore: {player1}");
-
 
 
             Console.ReadLine();
